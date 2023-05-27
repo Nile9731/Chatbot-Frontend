@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fetchData() {
+        fetch("https://api.example.com/data")
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle the response data here
+            console.log(data);
+          })
+          .catch((error) => {
+            // Handle any errors that occurred during the request
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="fetchData()">Fetch Data</button>
+  </body>
+</html>
