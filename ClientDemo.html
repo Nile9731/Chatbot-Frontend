@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example App</title>
+  </head>
+  <body>
+    <h1>Welcome to Example App</h1>
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name" />
+    <button onclick="submitForm()">Submit</button>
+    <div id="message"></div>
+
+    <script>
+      function submitForm() {
+        var nameInput = document.getElementById("name");
+        var name = nameInput.value;
+
+        // Send a POST request to the backend API endpoint
+        fetch("http://localhost:8000/greet", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: name }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Update the message div with the received response
+            var messageDiv = document.getElementById("message");
+            messageDiv.textContent = data.message;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
